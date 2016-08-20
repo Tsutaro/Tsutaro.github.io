@@ -1,9 +1,0 @@
-Gameplay:
-- side scroller
-- adventure
-- shooter
-- bullet hell
-
-
-graphics:
-- japanese based style
