@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+<meta charset="utf-8">
+	<title>Warmup Weekend</title>
+	<link rel="stylesheet" href="style.css">
+	<script src="js/input.js"></script>
+	<script src="js/sprite.js"></script>
+	<script src="js/tileMap.js"></script>
+	<script src="js/level.js"></script>
+	<script src="js/player.js"></script>
+</head>
+<body>
+<script>
+window.onload = function(){
+var width, height, canvas, g, mouse, input, player, level;
+
+function init(){
+	canvas = document.createElement("canvas");
+	canvas.width = width = 800;
+	canvas.height = height = 600;
+	document.body.appendChild(canvas);
+	g = canvas.getContext("2d");
+
+	mouse = new Mouse();
+	input = new Input();
+	level = new Level();
+	player = new Player();
+
+	level.loadLevel();
+}
+
+function loop(){
+	tick();
+	render();
+	window.requestAnimationFrame(loop);
+}
+
+function tick(){
+	input.tick();
+	player.tick();
+}
+
+function render(){
+	g.clearRect(0, 0, width, height);
+	renderMap(g, level);
+	player.render(g);
+}
+
+//other important functions
+function Collision(ax, ay, aw, ah, bx, by, bw, bh){
+	return ax < bx + bw && ax + aw > bx && ay < by + bh && ay + ah > by;
+}
+
+
+init();
+window.requestAnimationFrame(loop);
+}
+</script>
+</body>
+</html>
