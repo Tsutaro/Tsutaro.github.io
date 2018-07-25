@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="es">
+<meta charset="utf-8">
+<head>
+<title>Generador Combinaciones Tinka</title>
+</head>
+<body>
+Generar Jugadas <br>
+<input type="button" value="Generar" onclick="init()"><br>
+Generar 30 jugadas <br>
+<input type="button" value="Generar" onclick="init1()">
+<script>
+
+var vitales = [5, 15, 24, 25, 38];
+var n = 0; // donde se almacenan los numeros al azar
+var jugada = [];
+var combinaciones = [];
+
+var wrapper;
+var container;
+
+function init(){
+	AgregarCombinacion(aleatorio());
+	MostrarLista();
+}
+
+function init1(){
+	for(var i = 0; i < 30; i++){
+		AgregarCombinacion(aleatorio());
+	}
+	MostrarLista();
+}
+
+function aleatorio(){
+	n = 0;
+	for(var i = 0; i < 6; i++){
+		n = Math.floor((Math.random()*45)+1);
+		if(jugada.includes(n)){
+			jugada.splice(i, 1);
+			n = Math.floor((Math.random()*45)+1);
+			jugada[i] = n;
+		}else{
+			jugada[i] = n;
+		}
+	}
+	return jugada;
+}
+
+function AgregarCombinacion(lista){
+	combinaciones.push(lista.toString());
+}
+
+function MostrarLista(){
+	wrapper = document.createElement("p");
+	var text = "";
+	for(var i = 0; i < combinaciones.length; i++){
+	//console.log( (i+1) +": "+combinaciones[i]);
+		var lb = document.createElement("br");
+		text = ((i+1)+": \n"+combinaciones[i]);
+		container = document.createTextNode(text);
+		wrapper.appendChild(lb);
+		wrapper.appendChild(container);
+		
+	}
+	document.body.appendChild(wrapper);
+}
+
+</script>
+</body>
+</html>
