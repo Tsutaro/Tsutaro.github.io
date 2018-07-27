@@ -84,7 +84,8 @@ function agregarJugada(){
 }
 
 function AgregarCombinacion(lista){
-	combinaciones.push(lista.toString());
+	lista.sort(function(a, b){return a-b});
+	combinaciones.push([lista.toString()]);
 }
 
 function MostrarLista(){
