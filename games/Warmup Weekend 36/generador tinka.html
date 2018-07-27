@@ -20,20 +20,21 @@ var wrapper;
 var container;
 
 function init(){
-	AgregarCombinacion(aleatorio());
-	MostrarLista();
+	/*AgregarCombinacion(aleatorio());
+	MostrarLista();*/
+	checkDoble();
 }
 
 function init1(){
 	for(var i = 0; i < 30; i++){
-		AgregarCombinacion(aleatorio());
+		AgregarCombinacion(checkDoble());
 	}
 	MostrarLista();
 }
 
-function aleatorio(){
-	n = 0;
-	for(var i = 0; i < 6; i++){
+//function aleatorio(){
+//	return n;
+	/*for(var i = 0; i < 6; i++){
 		n = Math.floor((Math.random()*45)+1);
 		if(jugada.includes(n)){
 			jugada.splice(i, 1);
@@ -42,6 +43,35 @@ function aleatorio(){
 		}else{
 			jugada[i] = n;
 		}
+	}
+	return jugada;*/
+//}
+
+function agregarJugada(){
+	n = 0;
+	for(var i = 0; i < 6; i++){
+		n = Math.floor((Math.random()*45)+1);
+		jugada[i] = n;
+	}
+	console.log(jugada);
+}
+
+function checkDoble(){
+	agregarJugada();
+	var count = -6;
+	var number = 0;
+	for(var i = 0; i < jugada.length; i++){
+		number = jugada[i];
+		for(var ia = 0; ia < jugada.length; ia++){
+			if(jugada[ia] === number){
+				count++;
+			}
+		}
+	}
+	console.log(count);
+	if(count >= 2){
+		console.log("fuck me");
+		agregarJugada();
 	}
 	return jugada;
 }
