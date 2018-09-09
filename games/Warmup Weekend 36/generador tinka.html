@@ -2,13 +2,32 @@
 <html lang="es">
 <meta charset="utf-8">
 <head>
-<title>Generador Combinaciones Tinka</title>
+<title>Generador Tinka</title>
 </head>
 <body>
 Generar Jugadas <br>
-<input type="button" value="Generar" onclick="init()"><br>
-Generar 30 jugadas <br>
-<input type="button" value="Generar" onclick="init1()">
+<input type="text" id="txtcantidad">
+<input type="button" value="Generar" id="boton" onclick="jugar()"><br>
+<!-- Generar 30 jugadas <br> -->
+<!-- <input type="button" value="Generar" onclick="init1()"> -->
+<style type="text/css">
+
+body{
+	background: #c7ef28;
+	color: black;
+	font-size: 25px;
+}
+
+
+#boton{
+	background: #e8a81e;
+	border-radius: 1em;
+	box-shadow: 0px 5px 0px 0px rgba(0, 0, 0, 0.5);
+	font-weight: bold;
+	width: 100px;
+}
+
+</style>
 <script>
 
 var vitales = [5, 15, 24, 25, 38];
@@ -21,34 +40,14 @@ var container;
 
 var count = 0;
 
-function init(){
-	/*AgregarCombinacion(aleatorio());
-	MostrarLista();*/
-	AgregarCombinacion(agregarJugada());
-	MostrarLista();
-}
-
-function init1(){
-	for(var i = 0; i < 30; i++){
+function jugar(){
+	var cantidad = document.getElementById("txtcantidad").value;
+	for(var i = 0; i < cantidad; i++){
 		AgregarCombinacion(agregarJugada());
 	}
 	MostrarLista();
+	console.log(cantidad);
 }
-
-//function aleatorio(){
-//	return n;
-	/*for(var i = 0; i < 6; i++){
-		n = Math.floor((Math.random()*45)+1);
-		if(jugada.includes(n)){
-			jugada.splice(i, 1);
-			n = Math.floor((Math.random()*45)+1);
-			jugada[i] = n;
-		}else{
-			jugada[i] = n;
-		}
-	}
-	return jugada;*/
-//}
 
 function generarJugada(){
 	n = 0;
