@@ -5,11 +5,35 @@
 <title>Generador Tinka</title>
 </head>
 <body>
-Generar Jugadas <br>
-<input type="text" id="txtcantidad">
-<input type="button" value="Generar" id="boton" onclick="jugar()"><br>
-<!-- Generar 30 jugadas <br> -->
-<!-- <input type="button" value="Generar" onclick="init1()"> -->
+
+<table>
+	Generar Jugadas
+	<tr>
+		<td><input type="text" id="txtcantidad"></td>
+		<!-- boton para generar jugadas aleatorias-->
+		<td><input type="button" value="Generar" class="boton" onclick="jugar()"></td>
+	</tr>
+</table>
+
+<br><br>
+
+<form>
+	<table>
+		<span>Generar Jugadas por Serie</span>
+		<tr>
+			<td>Número:</td>
+			<td><input type="text" id="txtnumero"></td>
+		</tr>
+		<tr>
+			<td>Serie:</td>
+			<td><input type="text" id="txtserie"></td>
+		</tr>
+		<tr>		
+			<!-- boton para generar por serie -->
+			<td><input type="button" value="Generar" class= "boton" onclick="jugarSerie()"></td>
+		</tr>
+	</table>
+</form>
 <style type="text/css">
 
 body{
@@ -19,7 +43,7 @@ body{
 }
 
 
-#boton{
+.boton{
 	background: #e8a81e;
 	border-radius: 1em;
 	box-shadow: 0px 5px 0px 0px rgba(0, 0, 0, 0.5);
@@ -40,6 +64,8 @@ var container;
 
 var count = 0;
 
+
+//genera jugadas aleatorias
 function jugar(){
 	var cantidad = document.getElementById("txtcantidad").value;
 	for(var i = 0; i < cantidad; i++){
@@ -100,8 +126,48 @@ function MostrarLista(){
 		
 	}
 	document.body.appendChild(wrapper);
+
 }
 
+
+//genera jugadas por series
+function conseguirSerie(){
+	var serie = document.getElementById("txtserie").value;
+	return serie;
+}
+
+function conseguirNumero(){
+	var numero = document.getElementById("txtnumero").value;
+	return numero;
+}
+
+function conseguirNumeroJugadas(){
+	var cantidad = document.getElementById("txtCantidadJugadas").value;
+	return cantidad;
+}
+
+function generarSerie(){
+	var serie = parseInt(conseguirSerie());
+	var numero = parseInt(conseguirNumero());
+	var n = numero;
+	var jugada = [];
+	jugada[0] = n;
+	for(var i = 0; i < 5; i ++){
+		if(n + serie> 45){
+			console.log(n - 45);
+			n = n - 45;
+		}
+		n+= serie;
+		jugada[i + 1] = n;
+	}
+
+	return jugada;
+}
+
+function jugarSerie(){
+	AgregarCombinacion(generarSerie());
+	MostrarLista();
+}
 </script>
 </body>
 </html>
